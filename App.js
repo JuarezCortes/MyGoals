@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { StyleSheet, View, FlatList } from 'react-native'
 import GoalItem from './components/GoalItem'
-
+import GoalInput from './components/GoalInput'
 
 export default function App() {
 const [goals, setGoals] = useState([])
 
-function handleAddGoal(enteredGoalTexT){
+function handleAddGoal(enteredGoalText){
   setGoals(() => [... goals, {text: enteredGoalText}])
 }
 
@@ -23,10 +23,12 @@ function handleDeleteGoal(){
         <FlatList
        data={goals}
        renderItem={ (itemData) => {
+        return(
        <GoalItem
        itemData={itemData}
        onDeleteItem={handleDeleteGoal}
        />
+        )
        }}
        keyExtractor={(item) => {
         return item.id
@@ -55,5 +57,5 @@ const styles = StyleSheet.create({
   },
   goalText:{
     color: 'white'
-  }
+  },
 });
